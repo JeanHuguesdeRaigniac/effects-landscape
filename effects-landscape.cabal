@@ -1,0 +1,67 @@
+cabal-version:      2.4
+name:               effects-landscape
+version:            0.1.0.0
+
+author:             Jean-Hugues de Raigniac
+maintainer:         jhderaigniac@proton.me
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+executable effects-landscape
+    main-is:          Main.hs
+    build-depends:    base ^>=4.16.4.0
+                    , containers ^>=0.6.5.1
+                    , mmorph ^>=1.2.0
+                    , mtl ^>=2.2.2
+                    , transformers ^>=0.5.6
+                    , extensible-effects ^>=5.0.0.1
+                    , freer-simple ^>=1.2.1.2
+                    , rio ^>=0.1.22.0
+                    , fused-effects ^>=1.1.2.1
+                    , polysemy ^>=1.9.0.0
+                    , effectful ^>=2.2.1.0
+                    , has-transformers ^>=0.1.0.4
+                    , cleff ^>=0.3.3.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
+    default-extensions:
+        DataKinds
+        FlexibleContexts
+        GADTs
+        KindSignatures
+        LambdaCase
+        RankNTypes
+        ScopedTypeVariables
+        TemplateHaskell
+        TypeApplications
+        TypeOperators
+    ghc-options: -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Wmissing-home-modules -Widentities -Wredundant-constraints
+    other-modules:
+        Commons
+        Types
+        Inference
+        AppMtl
+        Internal.Mtl
+        AppRWSTMtl
+        Internal.RWSTMtl
+        AppRWSTTransformers
+        Internal.RWSTTransformers
+        AppExtensibleEffects
+        Internal.ExtensibleEffects
+        AppFreerSimple
+        Internal.FreerSimple
+        AppRio
+        Internal.RIO
+        AppFusedEffects
+        Internal.FusedEffects
+        AppPolysemy
+        Internal.Polysemy
+        AppEffectful
+        Internal.Effectful
+        AppHasTransformers
+        Internal.HasTransformers
+        AppCleff
+        Internal.Cleff
