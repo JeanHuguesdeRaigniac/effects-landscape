@@ -10,12 +10,20 @@ type Eval a = ExceptT String (RWST Env Variables Steps IO) a
 runEval :: Env -> Steps -> Eval Value -> IO (Either String Value, Steps, Variables)
 runEval env steps ev = runRWST (runExceptT ev) env steps
 
-tick :: Eval ()
+tick :: MonadState Steps m => m ()
 tick = do
   st <- get
   put (st + 1)
 
-eval :: Exp -> Eval Value
+eval ::
+  ( MonadState Steps m,
+    MonadWriter Variables m,
+    MonadReader Env m,
+    MonadError String m,
+    MonadIO m
+  ) =>
+  Exp ->
+  m Value
 eval (Lit i) = do
   tick
   embeddedLog ("Lit: " <> show i)

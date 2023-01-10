@@ -239,7 +239,7 @@ runEval env steps ev = do
 
 ![tick](images/tick.png)
 
-Having a description of involved effects in a signature is common today. But it came after `mtl` and `transformers` releases, so they display a flat `Eval ()`.
+Besides `transformers`, it is easy to describe involved effects in a signature.
 
 As often, `cleff` and `effectful` are identical. We could say that `extensible-effects`, `freer-simple` and `polysemy` are very similar too. It becomes clear if we replace `Member` by the type operator `:>` and do some renaming.
 
