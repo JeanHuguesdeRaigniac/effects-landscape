@@ -18,7 +18,7 @@ First, let's have a quick look at their first release on Hackage.
 
 ![timeline](images/timeline.png)
 
-It all started in November 2006, with `mtl` (an acronym for Monad Transformers Library). Its challenger, `transformers`, appeared 2 years and a half later in June 2009. After, everything stayed quiet for a while.
+It all started in November 2006, with `mtl` (an acronym for Monad Transformers Library). Its design evolved to use GHC extensions, breaking compatibility with Haskell98. To keep it, a split called `transformers` appeared 2 years and a half later in June 2009. After, everything stayed quiet for a while.
 
 Then `extensible-effects` shook the status quo in November 2013. It presented itself as an alternative to Monad Transformers.
 
