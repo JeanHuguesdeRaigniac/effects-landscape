@@ -12,7 +12,6 @@ import qualified AppRWSTMtl
 import qualified AppRWSTTransformers
 import qualified AppRio
 import Commons (initialEnv, initialSteps, tests)
-import Inference (runInference)
 
 main :: IO ()
 main = do
@@ -48,6 +47,3 @@ main = do
 
   putStrLn "\n10. cleff"
   tests $ AppCleff.runEval initialEnv initialSteps . AppCleff.eval
-
-  putStrLn "\nInference"
-  runInference

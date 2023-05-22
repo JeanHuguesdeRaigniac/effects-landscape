@@ -1,4 +1,4 @@
-module Inference where
+module Main where
 
 import Control.Monad.Freer (Eff, Member, reinterpret, runM)
 import Control.Monad.Freer.State (State, execState, runState)
@@ -38,7 +38,7 @@ runCounter :: Integer -> Eff '[State Integer, IO] () -> IO Integer
 runCounter steps =
   fmap (\i -> trace (show i) i) . runM . execState steps
 
--- solution 4
+-- Solution 4
 data IntegerState r where
   Put :: Integer -> IntegerState ()
   Get :: IntegerState Integer
@@ -69,3 +69,6 @@ runInference = do
   four <- runCounter three tickWithMonomorphicGet
   five <- runCounter' four tickWithIntegerState
   print five
+
+main :: IO ()
+main = runInference

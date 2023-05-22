@@ -5,12 +5,108 @@ version:            0.1.0.0
 author:             Jean-Hugues de Raigniac
 maintainer:         jhderaigniac@proton.me
 
--- A copyright notice.
--- copyright:
--- category:
 extra-source-files: CHANGELOG.md
+tested-with: GHC == 9.2.7
 
-executable effects-landscape
+-- Effect library switches
+flag with-cleff
+    default: False
+flag with-effectful
+    default: False
+flag with-extensible-effects
+    default: False
+flag with-freer-simple
+    default: False
+flag with-fused-effects
+    default: False
+flag with-has-transformers
+    default: False
+flag with-mtl
+    default: False
+flag with-polysemy
+    default: False
+flag with-rio
+    default: False
+flag with-rwst-mtl
+    default: False
+flag with-rwst-transformers
+    default: False
+
+common common
+    ghc-options:        -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Wmissing-home-modules -Widentities -Wredundant-constraints
+    default-language:   Haskell2010
+    default-extensions: BlockArguments
+                        ConstraintKinds
+                        DataKinds
+                        FlexibleContexts
+                        GADTs
+                        KindSignatures
+                        LambdaCase
+                        OverloadedStrings
+                        RankNTypes
+                        ScopedTypeVariables
+                        TemplateHaskell
+                        TypeApplications
+                        TypeFamilies
+                        TypeOperators
+
+library
+    import:             common
+    build-depends:      base ^>=4.16.4.0
+                      , containers ^>=0.6.5.1
+                      , mmorph ^>=1.2.0
+                      , text ^>=1.2.5.0
+                      , cleff ^>=0.3.3.0
+                      , effectful ^>=2.2.1.0
+                      , effectful-th ^>=1.0.0.1
+                      , extensible-effects ^>=5.0.0.1
+                      , freer-simple ^>=1.2.1.2
+                      , fused-effects ^>=1.1.2.1
+                      , has-transformers ^>=0.1.0.4
+                      , mtl ^>=2.2.2
+                      , polysemy ^>=1.9.1.0
+                      , rio ^>=0.1.22.0
+                      , transformers ^>=0.5.6
+    hs-source-dirs:     src
+    exposed-modules:
+        Internal.WithCleff
+        Internal.WithEffectful
+        Internal.WithExtensibleEffects
+        Internal.WithFreerSimple
+        Internal.WithFusedEffects
+        Internal.WithHasTransformers
+        Internal.WithMtl
+        Internal.WithPolysemy
+        Internal.WithRIO
+        Internal.WithRWSTMtl
+        Internal.WithRWSTTransformers
+        Commons
+        Types
+    other-modules:
+        Paths_effects_landscape
+    if flag(with-cleff)
+        cpp-options: -DWITH_CLEFF
+    if flag(with-effectful)
+        cpp-options: -DWITH_EFFECTFUL
+    if flag(with-extensible-effects)
+        cpp-options: -DWITH_EXTENSIBLE_EFFECTS
+    if flag(with-freer-simple)
+        cpp-options: -DWITH_FREER_SIMPLE
+    if flag(with-fused-effects)
+        cpp-options: -DWITH_FUSED_EFFECTS
+    if flag(with-has-transformers)
+        cpp-options: -DWITH_HAS_TRANSFORMERS
+    if flag(with-mtl)
+        cpp-options: -DWITH_MTL
+    if flag(with-polysemy)
+        cpp-options: -DWITH_POLYSEMY
+    if flag(with-rio)
+        cpp-options: -DWITH_RIO
+    if flag(with-rwst-mtl)
+        cpp-options: -DWITH_RWST_MTL
+    if flag(with-rwst-transformers)
+        cpp-options: -DWITH_RWST_TRANSFORMERS
+executable v0
     main-is:          Main.hs
     build-depends:    base ^>=4.16.4.0
                     , containers ^>=0.6.5.1
@@ -21,11 +117,12 @@ executable effects-landscape
                     , freer-simple ^>=1.2.1.2
                     , rio ^>=0.1.22.0
                     , fused-effects ^>=1.1.2.1
-                    , polysemy ^>=1.9.0.0
+                    , polysemy ^>=1.9.1.0
                     , effectful ^>=2.2.1.0
+                    , effectful-th ^>=1.0.0.1
                     , has-transformers ^>=0.1.0.4
                     , cleff ^>=0.3.3.0
-    hs-source-dirs:   app
+    hs-source-dirs:   v0
     default-language: Haskell2010
     default-extensions:
         DataKinds
@@ -42,7 +139,6 @@ executable effects-landscape
     other-modules:
         Commons
         Types
-        Inference
         AppMtl
         Internal.Mtl
         AppRWSTMtl
@@ -65,3 +161,112 @@ executable effects-landscape
         Internal.HasTransformers
         AppCleff
         Internal.Cleff
+
+executable inference
+    main-is:          Main.hs
+    build-depends:    base ^>=4.16.4.0
+                    , freer-simple ^>=1.2.1.2
+    hs-source-dirs:   inference
+    default-language: Haskell2010
+    default-extensions:
+        DataKinds
+        FlexibleContexts
+        GADTs
+        RankNTypes
+        ScopedTypeVariables
+        TemplateHaskell
+        TypeApplications
+        TypeOperators
+    ghc-options: -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Wmissing-home-modules -Widentities -Wredundant-constraints
+
+executable v1
+    import:             common
+    main-is:            Main.hs
+    build-depends:      base ^>=4.16.4.0
+                      , containers ^>=0.6.5.1
+                      , text ^>=1.2.5.0
+                      , effects-landscape
+    hs-source-dirs:     v1
+    other-modules:
+        Paths_effects_landscape
+        App
+    if flag(with-cleff)
+        cpp-options: -DWITH_CLEFF
+    if flag(with-effectful)
+        cpp-options: -DWITH_EFFECTFUL
+    if flag(with-extensible-effects)
+        cpp-options: -DWITH_EXTENSIBLE_EFFECTS
+    if flag(with-freer-simple)
+        cpp-options: -DWITH_FREER_SIMPLE
+    if flag(with-fused-effects)
+        cpp-options: -DWITH_FUSED_EFFECTS
+    if flag(with-has-transformers)
+        cpp-options: -DWITH_HAS_TRANSFORMERS
+    if flag(with-mtl)
+        cpp-options: -DWITH_MTL
+    if flag(with-polysemy)
+        cpp-options: -DWITH_POLYSEMY
+    if flag(with-rio)
+        cpp-options: -DWITH_RIO
+    if flag(with-rwst-mtl)
+        cpp-options: -DWITH_RWST_MTL
+    if flag(with-rwst-transformers)
+        cpp-options: -DWITH_RWST_TRANSFORMERS
+
+test-suite test
+    import:             common
+    main-is:            Main.hs
+    type:               exitcode-stdio-1.0
+    hs-source-dirs:     test
+    build-depends:      base ^>=4.16.4.0
+                      , effects-landscape
+                      , containers ^>=0.6.5.1
+                      , text ^>=1.2.5.0
+                      , hspec ^>=2.10.10
+                      , cleff ^>=0.3.3.0
+                      , effectful ^>=2.2.1.0
+                      , effectful-th ^>=1.0.0.1
+                      , extensible-effects ^>=5.0.0.1
+                      , freer-simple ^>=1.2.1.2
+                      , fused-effects ^>=1.1.2.1
+                      , has-transformers ^>=0.1.0.4
+                      , mtl ^>=2.2.2
+                      , polysemy ^>=1.9.1.0
+                      , rio ^>=0.1.22.0
+                      , transformers ^>=0.5.6
+    other-modules:
+        Paths_effects_landscape
+        Internal.WithCleffSpec
+        Internal.WithEffectfulSpec
+        Internal.WithExtensibleEffectsSpec
+        Internal.WithFreerSimpleSpec
+        Internal.WithFusedEffectsSpec
+        Internal.WithHasTransformersSpec
+        Internal.WithMtlSpec
+        Internal.WithPolysemySpec
+        Internal.WithRIOSpec
+        Internal.WithRWSTMtlSpec
+        Internal.WithRWSTTransformersSpec
+        AppSpec
+    if flag(with-cleff)
+        cpp-options: -DWITH_CLEFF
+    if flag(with-effectful)
+        cpp-options: -DWITH_EFFECTFUL
+    if flag(with-extensible-effects)
+        cpp-options: -DWITH_EXTENSIBLE_EFFECTS
+    if flag(with-freer-simple)
+        cpp-options: -DWITH_FREER_SIMPLE
+    if flag(with-fused-effects)
+        cpp-options: -DWITH_FUSED_EFFECTS
+    if flag(with-has-transformers)
+        cpp-options: -DWITH_HAS_TRANSFORMERS
+    if flag(with-mtl)
+        cpp-options: -DWITH_MTL
+    if flag(with-polysemy)
+        cpp-options: -DWITH_POLYSEMY
+    if flag(with-rio)
+        cpp-options: -DWITH_RIO
+    if flag(with-rwst-mtl)
+        cpp-options: -DWITH_RWST_MTL
+    if flag(with-rwst-transformers)
+        cpp-options: -DWITH_RWST_TRANSFORMERS
