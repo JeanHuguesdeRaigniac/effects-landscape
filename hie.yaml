@@ -1,0 +1,94 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:effects-landscape"
+
+    - path: "v0/Main.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Commons.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Types.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppMtl.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/Mtl.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppRWSTMtl.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/RWSTMtl.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppRWSTTransformers.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/RWSTTransformers.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppExtensibleEffects.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/ExtensibleEffects.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppFreerSimple.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/FreerSimple.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppRio.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/RIO.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppFusedEffects.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/FusedEffects.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppPolysemy.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/Polysemy.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppEffectful.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/Effectful.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppHasTransformers.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/HasTransformers.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/AppCleff.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "v0/Internal/Cleff.hs"
+      component: "effects-landscape:exe:v0"
+
+    - path: "inference/Main.hs"
+      component: "effects-landscape:exe:inference"
+
+    - path: "v1/Main.hs"
+      component: "effects-landscape:exe:v1"
+
+    - path: "v1/Paths_effects_landscape.hs"
+      component: "effects-landscape:exe:v1"
+
+    - path: "v1/App.hs"
+      component: "effects-landscape:exe:v1"
+
+    - path: "test"
+      component: "effects-landscape:test:test"

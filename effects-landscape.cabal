@@ -10,7 +10,7 @@ tested-with: GHC == 9.2.7
 
 -- Effect library switches
 flag with-cleff
-    default: False
+    default: True
 flag with-effectful
     default: False
 flag with-extensible-effects
